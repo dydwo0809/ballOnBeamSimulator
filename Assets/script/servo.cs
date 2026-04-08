@@ -150,6 +150,7 @@ public class servo : MonoBehaviour
         JointMotor motor = servoHinge.motor;
         JointLimits limits = servoHinge.limits;
         currentDegree = lowArm.transform.eulerAngles.z;
+
         if (currentDegree > 180)
         {
             currentDegree -= 360;
@@ -159,18 +160,16 @@ public class servo : MonoBehaviour
         {
             limits.min = degree;
             limits.max = 90;
-            servoHinge.limits = limits;
             motor.targetVelocity = -speed;
         }
         else
         {
             limits.max = degree;
             limits.min = -90;
-            servoHinge.limits = limits;
             motor.targetVelocity = speed;
         }
-        servoHinge.motor = motor;
-        
+        servoHinge.limits = limits;
+        servoHinge.motor = motor; 
     }
 
     public void togglePID()
